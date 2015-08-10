@@ -2,14 +2,22 @@ var discApp = angular.module('discgolfControllers', []);
 
 
 function setupController($scope, datasets) {
-    $scope.status = {
-        isopen: true
-    };
     $scope.datasets = datasets.data;
-    $scope.users = datasets.users;
-    $scope.courses = datasets.courses;
+    $scope.users = $scope.datasets.users;
+    $scope.courses = $scope.datasets.courses;
+    $scope.status = {
+        isopen: false
+    };
 
-    $scope.selectedCourseId = 0;
+    $scope.toggled = function(open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.currentGame = {
+        courseId : 0,
+        playerIds : [0,1,2]
+    };
+    
     
 
     $scope.toggleDropdown = function($event) {
@@ -18,13 +26,6 @@ function setupController($scope, datasets) {
         $scope.status.isopen = !$scope.status.isopen;
     };
 
-    $scope.getCourseIcon = function(id) {
-        if(id == selectedCourseId) {
-            return "remove";
-        } else {
-            return "ok";
-        }
-    }
 
     $scope.setCourse = function(id) {
         $scope.selectedCourseId = id;

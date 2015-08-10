@@ -2,39 +2,36 @@
   <thread><tr>
       <h4>Discgolf {{}}</h4>
   </tr></thread>
-  <div>
-    <label ng-repeat="course in courses">
-            <button class="btn btn-success" ng-click="setCourse(course.id)">
-                    <span class ="glyphicon glyphicon-{{ getCourseIcon(course.id) }}"></span> &nbsp;&nbsp;{{ course.name }}
-            </button>
-    </label>
-  </div>
   <table class="table table-striped">
     <thead><tr>
       <th>Players</th>
     </tr></thead>
-    <tbody><tr ng-repeat="player in players">
-      <td>
-        <button class="btn" ng-click="removePlayer(player.id)">
-        <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;{{ player.name }}
-        </button>
-      </td>
-    </tr></tbody>
     <tr>
       Select course: 
       <div class="btn-group" dropdown is-open="status.isopen">
-      <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
-        Button dropdown <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-        <li role="menuitem"><a href="#">Action</a></li>
-        <li role="menuitem"><a href="#">Another action</a></li>
-        <li role="menuitem"><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li role="menuitem"><a href="#">Separated link</a></li>
-      </ul>
-    </div>
+        <button id="sbutton" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+          Button dropdown <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="sbutton">
+          <li role="menuitem"><a href="#">Action</a></li>
+          <li role="menuitem"><a href="#">Another action</a></li>
+          <li role="menuitem"><a href="#">Something else here</a></li>
+        </ul>
+      </div>
+
+    </tr>
   </table>
+
+    <span dropdown on-toggle="toggled(open)">
+      <a href id="simple-dropdown" dropdown-toggle>
+        Click me for a dropdown, yo!
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+        <li ng-repeat="choice in users">
+          <a href>{{choice.name}}</a>
+        </li>
+      </ul>
+    </span>
 
   <hr>
   <input type="text" ng-model="newUserName">
