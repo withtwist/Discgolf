@@ -5,7 +5,7 @@ function setupController($scope, datasets) {
     $scope.datasets = datasets.data;
     $scope.users = $scope.datasets.users;
     $scope.courses = $scope.datasets.courses;
-    $scope.status = {
+    $scope.courseSelect = {
         isopen: false
     };
 
@@ -15,7 +15,7 @@ function setupController($scope, datasets) {
 
     $scope.currentGame = {
         courseId : 0,
-        playerIds : [0,1,2]
+        players : $scope.users
     };
     
     
@@ -29,6 +29,14 @@ function setupController($scope, datasets) {
 
     $scope.setCourse = function(id) {
         $scope.selectedCourseId = id;
+    }
+
+    $scope.selectedCourse = function(id) {
+        if($scope.currentGame.courseId == id) {
+            return "selected";
+        } else {
+            return "";
+        }
     }
 }
 function gameController($scope) {
