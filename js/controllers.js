@@ -15,7 +15,20 @@ function setupController($scope, datasets) {
 
     $scope.currentGame = {
         courseId : 0,
-        players : $scope.users
+        players : [{"id":"0","name":"twister"},{"id":"1","name":"Grubla"}],
+        addPlayer : function(player) {
+            if(!$scope.isPlaying(player)) {
+                $scope.currentGame.players.push(player);
+            }
+        },
+        removePlayer : function(player) {
+            console.log($scope.currentGame.players);
+            if($scope.isPlaying(player)) {
+                var index = $scope.currentGame.players.indexOf(player);
+                $scope.currentGame.players.splice(index, 1);
+
+            }
+        }
     };
     
     
@@ -37,6 +50,13 @@ function setupController($scope, datasets) {
         } else {
             return "";
         }
+    }
+
+    $scope.isPlaying = function(player) {
+        for (var i=0; i<$scope.currentGame.players.length; i++) {
+            if ($scope.currentGame.players[i].id == player.id) {return true;}
+        }
+        return false;
     }
 }
 function gameController($scope) {

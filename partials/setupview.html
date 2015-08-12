@@ -1,31 +1,30 @@
 <div class="container">
   <thread><tr>
-      <h4>Discgolf {{}}</h4>
+      <h4>Dicgolf </h4>
   </tr></thread>
       Select course: 
-      <div class="btn-group">
-        <select ng-model="selectedCourseId">
+        <select ng-model="currentGame.courseId">
           <option ng-repeat="course in courses" value="{{course.id}}" ng-selected="course.id == currentGame.courseId">{{course.name}}</option>
         </select>
-      </div>
-
-  <table class="table table-striped" style="width:50%">
-    <thead><tr>
-      <th>Players</th>
-    </tr></thead>
-    <tr ng-repeat="player in currentGame.players">
-      <td>
-        <div class="btn-group">
-          <button class="btn btn-success" ng-click="removeUser(player.id)"> 
-            {{player.name}}
+  <div class="container">
+    <div class="list">
+      <ul> <h5>Current players</h5>
+        <li ng-repeat="player in currentGame.players">
+          <button class="btn btn-success" ng-click="currentGame.removePlayer(player)">
+            <span class="glyphicon glyphicon-remove"></span>{{player.name}}
           </button>
-        </div>
-      </td>
-      <td>
-        Hej
-      </td>
-    </tr>
-  </table>
+        </li>
+      </ul>
+    </div>
+    <div class="list">
+      <ul> <h5>All users</h5>
+        <li ng-repeat="user in users" ng-show="!isPlaying(user)">
+          <button class="btn btn-success" ng-click="currentGame.addPlayer(user)">
+            <span class="glyphicon glyphicon-user"></span>{{user.name}}</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 
   <input type="text" ng-model="newUserName">
