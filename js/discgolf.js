@@ -5,11 +5,13 @@ discApp.config(['$routeProvider',
       when('/', {
         templateUrl: 'partials/setupview.html',
         controller: 'setupCtrl',
+        activetab: 'setup',
         resolve: setupController.resolve
       }).
       when('/game', {
         templateUrl: 'partials/gameview.html',
-        controller: 'gameCtrl'
+        controller: 'gameCtrl',
+        activetab: 'game'
       }).
       otherwise({
         redirectTo: '/'

@@ -1,11 +1,14 @@
 <div class="container">
-  <thread><tr>
-      <h4>Dicgolf </h4>
-  </tr></thread>
-      Select course: 
-        <select ng-model="currentGame.courseId">
-          <option ng-repeat="course in courses" value="{{course.id}}" ng-selected="course.id == currentGame.courseId">{{course.name}}</option>
-        </select>
+  <tabset justified="true">
+    <tab heading="Justified" ng-class="{active: $route.current.activetab == 'setup'}"></tab>
+    <tab heading="SJ" ng-class="{active: $route.current.activetab == 'game'}"></tab>
+    <tab heading="Long Justified" ng-class="{active: $route.current.activetab == 'stats'}"></tab>
+  </tabset>
+  <br>
+  Select course: 
+  <select ng-model="currentGame.courseId">
+    <option ng-repeat="course in courses" value="{{course.id}}" ng-selected="course.id == currentGame.courseId">{{course.name}}</option>
+  </select>
   <div class="container">
     <div class="list">
       <ul> <h5>Current players</h5>
@@ -27,13 +30,12 @@
   </div>
 
 
-  <input type="text" ng-model="newUserName">
-  <button class="btn btn-success" ng-click="addUser(newUserName)">
-    <span class="glyphicon glyphicon-user"></span> New Player
-  </button>
-
-
-  <button class="btn btn-success" ng-disabled="error || incomplete">
-    <span class="glyphicon glyphicon-save"></span> Save Changes
-  </button>
+  <div class="container" ng-controller="dtpCtrl">
+    <p class="input-group">
+      <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="status.opened" min-date="'2010-01-01'" max-date="'2050-12-31'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </div>
 </div>             
